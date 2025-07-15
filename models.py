@@ -1,3 +1,4 @@
+from exceptoins import ItemNotInOrderException, InvalidQuantityException
 class MenuItem:
     def __init__(self, name, price):
         self.name = name
@@ -9,7 +10,10 @@ class Order:
         self.list = {}
 
     def add_item(self, item: MenuItem, quantity: int):
-        self.list[item.name] = (quantity, item.price)
+        if quantity  <= 0:
+            raise InvalidQuantityException()
+        else:
+            self.list[item.name] = (quantity, item.price)
         return self.list
 
     def remove_item(self, item: MenuItem):
