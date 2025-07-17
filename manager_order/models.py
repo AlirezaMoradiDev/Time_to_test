@@ -17,7 +17,10 @@ class Order:
         return self.list
 
     def remove_item(self, item: MenuItem):
-        self.list.pop(item.name)
+        if item.name not in self.list.keys():
+            raise ItemNotInOrderException()
+        else:
+            self.list.pop(item.name)
         return self.list
 
     def calculate_total(self):

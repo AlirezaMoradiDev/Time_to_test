@@ -45,3 +45,10 @@ class TestOrder(unittest.TestCase):
         )
 
 
+    def test_exception_remove(self):
+        list_order = self.order.add_item(self.watch, 45)
+
+        with self.assertRaises(ItemNotInOrderException):
+            list_order = self.order.remove_item(self.phone)
+
+
